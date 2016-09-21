@@ -1,0 +1,18 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/fifa-match-manager.html",
+  "fragments": [
+    "src/fifa-players.html",
+    "src/fifa-matches.html",
+    "src/fifa-404.html"
+  ],
+  "sourceGlobs": [
+   "src/**/*",
+   "images/**/*",
+   "bower.json"
+  ],
+  "includeDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}

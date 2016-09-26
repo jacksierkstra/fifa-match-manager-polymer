@@ -39,14 +39,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="card">
 
             <p>You can fill in additional players where you can chose from in the matches screen.</p>
-            <form is="iron-form" id="addPlayerForm">
+            <form is="iron-form" id="addPlayerForm" content-type="application/json">
                 <paper-input name="firstName" label="First name"></paper-input>
                 <paper-input name="lastName" label="Last name"></paper-input>
                 <paper-input name="email" label="Email address"></paper-input>
 
                 <br>
-                <paper-button on-click="_submit">Submit</paper-button>
-                <paper-button>Reset</paper-button>
+                <paper-button raised on-click="_submit">Submit</paper-button>
+                <paper-button raised on-click="_reset">Reset</paper-button>
             </form>
 
         </div>
@@ -67,7 +67,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
 
+        var addPlayerForm;
+
         Polymer({
+
             is: 'fifa-players',
 
             properties: {
@@ -85,7 +88,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             },
 
             _submit : function(event) {
-                console.log(event);
+                var addPlayerForm = Polymer.dom(event).localTarget.parentElement;
+
+                addPlayerForm.addEventListener('iron-form-submit', function(event) {
+                    this.push('players', event.detail);
+                })
+
+                Polymer.dom(event).localTarget.parentElement.submit();
+            },
+
+            _reset : function(event) {
+                var form = Polymer.dom(event).localTarget.parentElement
+                form.reset();
             }
 
         });
